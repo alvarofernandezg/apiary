@@ -5,33 +5,37 @@ HOST: https://polls.apiblueprint.org/
 
 GymAry is an API to manage the activity of a gym.
 
-## Questions Collection [/questions]
+## Members Collection [/members]
 
-### List All Questions [GET]
+### List All Members [GET]
 
 + Response 200 (application/json)
 
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
+                "id": 1,
+                "nombre": "Juan",
+                "apellidos": "Fernández García",
+                "dni": "83762084Y",
+                "dirección": "Calle Roca Nº2"
+                "ciudad": "A Coruña",
+                "codigo postal": 15007
+                "email": "juan.fernandez@gmail.com"
+                "telefono": 686745367
+            },
+            {
+                "id": 2,
+                "nombre": "Rosa",
+                "apellidos": "Rey Varela",
+                "dni": "73645299J",
+                "dirección": "Calle Azul Nº50"
+                "ciudad": "A Coruña",
+                "codigo postal": 15009
+                "email": "rosareyva@gmail.com"
+                "telefono": 656438892
             }
         ]
+        
 
 ### Create a New Question [POST]
 
@@ -78,3 +82,24 @@ form of choices.
                     }
                 ]
             }
+            
+## Member [/members/{member_id}]
+
++ Parameters
+    + member_id (number) - ID of the member in the form of an integer
+
+### Get member [GET]
+
++ Response 200 (application/json)
+
+        {
+            "id": 2,
+            "nombre": "Rosa",
+            "apellidos": "Rey Varela",
+            "dni": "73645299J",
+            "dirección": "Calle Azul Nº50"
+            "ciudad": "A Coruña",
+            "codigo postal": 15009
+            "email": "rosareyva@gmail.com"
+            "telefono": 656438892
+        }
