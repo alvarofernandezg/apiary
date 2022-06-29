@@ -35,60 +35,10 @@ GymAry is an API to manage the activity of a gym.
                 "telefono": 656438892
             }
         ]
-        
 
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
-+ Request (application/json)
-
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /questions/2
-
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
-            
-## Member [/members/{member_id}]
-
+### Get member [GET/members/{member_id}]
 + Parameters
     + member_id (number) - ID of the member in the form of an integer
-
-### Get member [GET]
 
 + Response 200 (application/json)
 
@@ -103,3 +53,38 @@ form of choices.
             "email": "rosareyva@gmail.com"
             "telefono": 656438892
         }
+        
+### Sign up a new member [POST]
+
++ Request (application/json)
+
+        {
+            "nombre": "Marcos",
+            "apellidos": "Taboada Fraga",
+            "dni": "73649812I",
+            "dirección": "Calle Cruz Nº109"
+            "ciudad": "A Coruña",
+            "codigo postal": 15008
+            "email": "marcos.tabo@gmail.com"
+            "telefono": 677425109
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /members/3
+
+    + Body
+
+            {
+                "id": 3,
+                "nombre": "Marcos",
+                "apellidos": "Taboada Fraga",
+                "dni": "73649812I",
+                "dirección": "Calle Cruz Nº109"
+                "ciudad": "A Coruña",
+                "codigo postal": 15008
+                "email": "marcos.tabo@gmail.com"
+                "telefono": 677425109
+            }
