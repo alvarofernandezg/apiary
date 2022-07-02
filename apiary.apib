@@ -19,9 +19,18 @@ GymAry is an API to manage the activity of a gym.
                 "dni": "83762084Y",
                 "dirección": "Calle Roca Nº2"
                 "ciudad": "A Coruña",
-                "codigo postal": 15007
-                "email": "juan.fernandez@gmail.com"
-                "telefono": 686745367
+                "codigo postal": 15007,
+                "email": "juan.fernandez@gmail.com",
+                "telefono": 686745367,
+                "actividades":
+                    [
+                        {
+                            "id": 1,
+                            "nombre": "crossfit",
+                            "dias": ["lunes","jueves"],
+                            "hora": "11:30"
+                        }
+                    ]
             },
             {
                 "id": 2,
@@ -30,9 +39,10 @@ GymAry is an API to manage the activity of a gym.
                 "dni": "73645299J",
                 "dirección": "Calle Azul Nº50"
                 "ciudad": "A Coruña",
-                "codigo postal": 15009
-                "email": "rosareyva@gmail.com"
-                "telefono": 656438892
+                "codigo postal": 15009,
+                "email": "rosareyva@gmail.com",
+                "telefono": 656438892,
+                "actividades": []
             }
         ]
 
@@ -49,9 +59,10 @@ GymAry is an API to manage the activity of a gym.
             "dni": "73645299J",
             "dirección": "Calle Azul Nº50"
             "ciudad": "A Coruña",
-            "codigo postal": 15009
-            "email": "rosareyva@gmail.com"
-            "telefono": 656438892
+            "codigo postal": 15009,
+            "email": "rosareyva@gmail.com",
+            "telefono": 656438892,
+            "actividades": []
         }
         
 ### Sign up a new member [POST]
@@ -64,9 +75,24 @@ GymAry is an API to manage the activity of a gym.
             "dni": "73649812I",
             "dirección": "Calle Cruz Nº109"
             "ciudad": "A Coruña",
-            "codigo postal": 15008
-            "email": "marcos.tabo@gmail.com"
-            "telefono": 677425109
+            "codigo postal": 15008,
+            "email": "marcos.tabo@gmail.com",
+            "telefono": 677425109,
+            "actividades":
+                [
+                    {
+                        "id": 1,
+                        "nombre": "crossfit",
+                        "dias": ["lunes","jueves"],
+                        "hora": "11:30"
+                    },
+                    {
+                        "id": 2,
+                        "nombre": "calistenia",
+                        "dias": ["miercoles"],
+                        "hora": "17:00"
+                    }
+                ]
         }
 
 + Response 201 (application/json)
@@ -84,7 +110,22 @@ GymAry is an API to manage the activity of a gym.
                 "dni": "73649812I",
                 "dirección": "Calle Cruz Nº109"
                 "ciudad": "A Coruña",
-                "codigo postal": 15008
-                "email": "marcos.tabo@gmail.com"
-                "telefono": 677425109
+                "codigo postal": 15008,
+                "email": "marcos.tabo@gmail.com",
+                "telefono": 677425109,
+                "actividades":
+                    [
+                        {
+                            "id": 1,
+                            "nombre": "crossfit",
+                            "dias": ["lunes","jueves"],
+                            "hora": "11:30"
+                        },
+                        {
+                            "id": 2,
+                            "nombre": "calistenia",
+                            "dias": ["miercoles"],
+                            "hora": "17:00"
+                        }
+                    ]
             }
