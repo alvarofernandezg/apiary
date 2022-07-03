@@ -5,10 +5,19 @@ HOST: https://polls.apiblueprint.org/
 
 GymAry is an API to manage the activity of a gym.
 
-## Members Collection [/members]
+### Errores
 
-### List All Members [GET]
+Cuando ocurre un código de error en cualquier petición se recibe un json con un campo
+**message** que explica el error.
 
+# Members Resource [/members]
+
+Gestiona lo relacionado con los miembros dados de alta en el gimnasio (listar, crear,
+eliminar y actualizar).
+
+## List All Members [GET]
+Muestra todos los miembros dados de alta, toda su información y las actividades a las
+que están apuntados y sus horarios.
 + Response 200 (application/json)
 
         [
@@ -31,7 +40,7 @@ GymAry is an API to manage the activity of a gym.
                                 [
                                     {
                                         "dia": "lunes",
-                                        "hora": ["11:30","18:00"]
+                                        "hora": ["11:30"]
                                     },
                                     {
                                         "dia": "jueves",
@@ -54,10 +63,17 @@ GymAry is an API to manage the activity of a gym.
                 "actividades": []
             }
         ]
+        
++ Response 500 (application/json)
 
-### Get member [GET/members/{member_id}]
+        {
+            "message": "Internal server error"
+        }
+
+## Get member [GET/members/{member_id}]
+Muestra la información del miembro con el id dado.
 + Parameters
-    + member_id (number) - ID of the member in the form of an integer
+    + member_id: 2 (number) - ID of the member in the form of an integer
 
 + Response 200 (application/json)
 
@@ -74,7 +90,48 @@ GymAry is an API to manage the activity of a gym.
             "actividades": []
         }
         
-### Sign up a new member [POST]
++ Response 400 (application/json)
+
+        {
+            "message": "Invalid argument"
+        }
+        
++ Response 404 (application/json)
+
+        {
+            "message": "Resource not found"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "message": "Internal server error"
+        }
+        
+## Delete member [DELETE/members/{member_id}]
+Elimina (da de baja) el miembro con el id dado.
++ Parameters
+    + member_id: 2 (number) - ID of the member in the form of an integer
+    
++ Response 204
+
++ Response 500 (application/json)
+
+        {
+            "message": "Internal server error"
+        }
+        
+## Sign up a new member [POST]
+Da de alta una persona.
+Se debe proporcionar:
+
+- **Nombre.**
+- **Apellidos.**
+- **DNI.**
+- **Dirección:** Se divide en dirección, ciudad y codigo postal.
+- **Contacto:** Email y telefono.
+- **Actividades** a las que el cliente desea apuntarse (puede ser ninguna).
+- **Tarifa** mensual a pagar.
 
 + Request (application/json)
 
@@ -96,7 +153,7 @@ GymAry is an API to manage the activity of a gym.
                             [
                                 {
                                     "dia": "lunes",
-                                    "hora": ["11:30","18:00"]
+                                    "hora": ["11:30"]
                                 },
                                 {
                                     "dia": "jueves",
@@ -111,11 +168,12 @@ GymAry is an API to manage the activity of a gym.
                             [
                                 {
                                     "dia": "miercoles",
-                                    "hora": ["17:00"]
+                                    "hora": ["10:00"]
                                 }
                             ]
                     }
-                ]
+                ],
+            "tarifa": "30 euros/mes"
         }
 
 + Response 201 (application/json)
@@ -141,14 +199,75 @@ GymAry is an API to manage the activity of a gym.
                         {
                             "id": 1,
                             "nombre": "crossfit",
-                            "dias": ["lunes","jueves"],
-                            "hora": "11:30"
+                            "horario":
+                                [
+                                    {
+                                        "dia": "lunes",
+                                        "hora": ["11:30"]
+                                    },
+                                    {
+                                        "dia": "jueves",
+                                        "hora": ["17:30"]
+                                    }
+                                ]
                         },
                         {
                             "id": 2,
                             "nombre": "calistenia",
-                            "dias": ["miercoles"],
-                            "hora": "17:00"
+                            "horario":
+                                [
+                                    {
+                                        "dia": "miercoles",
+                                        "hora": ["10:00"]
+                                    }
+                                ]
                         }
                     ]
             }
+            
++ Response 500 (application/json)
+
+        {
+            "message": "Internal server error"
+        }
+            
+## Update member [PUT/members/{member_id}]
+Acutaliza la información de un miembro dado. Se puede actualizar cualquier campo
+excepto el id y el DNI. También se actualizan las actividades (se inscribe al
+miembro en ella).
++ Parameters
+    + member_id: 2 (number) - ID of the member in the form of an integer
+    
++ Request (application/json)
+
+        {
+            "nombre": "Rosa",
+            "apellidos": "Rey Varela",
+            "dirección": "Calle Azul Nº50"
+            "ciudad": "A Coruña",
+            "codigo postal": 15009,
+            "email": "rosareyva@gmail.com",
+            "telefono": 656438892,
+            "actividades": 
+                [
+                    {
+                        "id": 1,
+                        "nombre": "crossfit",
+                        "horario":
+                            [
+                                {
+                                    "dia": "lunes",
+                                    "hora": ["17:30"]
+                                }
+                            ]
+                    }
+                ]
+        }
+        
++ Response 204
+    
+# Activities Resource [/activity]
+
+## List all activities [GET]
+
++ Response 200 (application/json)
