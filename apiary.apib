@@ -27,8 +27,17 @@ GymAry is an API to manage the activity of a gym.
                         {
                             "id": 1,
                             "nombre": "crossfit",
-                            "dias": ["lunes","jueves"],
-                            "hora": "11:30"
+                            "horario":
+                                [
+                                    {
+                                        "dia": "lunes",
+                                        "hora": ["11:30","18:00"]
+                                    },
+                                    {
+                                        "dia": "jueves",
+                                        "hora": ["17:30"]
+                                    }
+                                ]
                         }
                     ]
             },
@@ -83,14 +92,28 @@ GymAry is an API to manage the activity of a gym.
                     {
                         "id": 1,
                         "nombre": "crossfit",
-                        "dias": ["lunes","jueves"],
-                        "hora": "11:30"
+                        "horario":
+                            [
+                                {
+                                    "dia": "lunes",
+                                    "hora": ["11:30","18:00"]
+                                },
+                                {
+                                    "dia": "jueves",
+                                    "hora": ["17:30"]
+                                }
+                            ]
                     },
                     {
                         "id": 2,
                         "nombre": "calistenia",
-                        "dias": ["miercoles"],
-                        "hora": "17:00"
+                        "horario":
+                            [
+                                {
+                                    "dia": "miercoles",
+                                    "hora": ["17:00"]
+                                }
+                            ]
                     }
                 ]
         }
