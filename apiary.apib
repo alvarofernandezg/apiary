@@ -268,6 +268,80 @@ miembro en ella).
     
 # Activities Resource [/activity]
 
+Gestiona las actividades del gimnasio, añadiendo, eliminando y actualizando.
+
 ## List all activities [GET]
+
+Muestra todas las actividades registradas que ofrece el gimnasio.
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "nombre": "crossfit",
+                "horario":
+                    [
+                        {
+                            "dia": "lunes",
+                            "hora": ["11:30","17:30"]
+                        },
+                        {
+                            "dia": "jueves",
+                            "hora": ["10:00","17:30"]
+                        }
+                    ]
+            },
+            {
+                "id": 2,
+                "nombre": "calistenia",
+                "horario":
+                    [
+                        {
+                            "dia": "miercoles",
+                            "hora": ["10:00","19:00"]
+                        },
+                        {
+                            "dia": "viernes",
+                            "hora": ["17:00"]
+                        }
+                    ]
+            },
+            {
+                "id": 3,
+                "nombre": "zumba",
+                "horario":
+                    [
+                        {
+                            "dia": "lunes",
+                            "hora": ["10:30","20:00"]
+                        },
+                        {
+                            "dia": "miercoles",
+                            "hora": ["10:30","20:00"]
+                        },
+                        {
+                            "dia": "viernes",
+                            "hora": ["10:30","20:00"]
+                        }
+                    ]
+            }
+        ]
+        
++ Response 500 (application/json)
+
+        {
+            "message": "Internal server error"
+        }
+        
+## Inscribe new activity [POST]
+
+Crea una nueva actividad.
+
+- **nombre:** Nombre de la actividad.
+- **horario:** Dias en las que se imparte y horas. Pueden ser varios dias y varias
+horas por dia.
+
++ Request (application/json)
 
 + Response 200 (application/json)
