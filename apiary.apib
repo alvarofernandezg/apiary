@@ -125,10 +125,10 @@ Elimina (da de baja) el miembro con el id dado.
 Da de alta una persona.
 Se debe proporcionar:
 
-- **Nombre.**
-- **Apellidos.**
-- **DNI.**
-- **Dirección:** Se divide en dirección, ciudad y codigo postal.
+- **Nombre:** Nombre del cliente.
+- **Apellidos:** Apellidos del cliente.
+- **DNI:** Documento de identidad del cliente.
+- **Dirección:** Se divide en tres campos: dirección, ciudad y codigo postal.
 - **Contacto:** Email y telefono.
 - **Actividades** a las que el cliente desea apuntarse (puede ser ninguna).
 - **Tarifa** mensual a pagar.
@@ -345,3 +345,102 @@ horas por dia.
 + Request (application/json)
 
 + Response 200 (application/json)
+
+# Workers Resource [/worker]
+Gestiona los trabajadores del gimnasio.
+
+## Get worker [GET/worker/{worker_id}]
+Muestra la información del trabajador con el id dado.
++ Parameters
+    + worker_id: 1 (number) - ID of the worker in the form of an integer
+    
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "nombre": "Tania",
+            "apellidos": "Iglesias Díaz",
+            "nss": "97586031246",
+            "direccion": "Calle Honduras Nº15",
+            "ciudad": "A Coruña",
+            "codigo postal": 15008,
+            "telefono": 676896124,
+            "email": "tania.iglesiasd@gmail.com",
+            "tipo": "Monitor",
+            "sueldo": "1250 euros"
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "message": "Invalid argument"
+        }
+        
++ Response 404 (application/json)
+
+        {
+            "message": "Resource not found"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "message": "Internal server error"
+        }
+    
+
+## Sign up a new worker [POST]
+
+Da de alta a un nuevo trabajador.
+Se debe proporcionar:
+
+- **Nombre:** Nombre del trabajador.
+- **Apellidos:** Apellidos del trabajador.
+- **NSS:** Número de seguridad social.
+- **Dirección:** Se divide en tres campos: calle, ciudad y código postal.
+- **Contacto:** Número de teléfono y email.
+- **Tipo:** Tipo de trabajo a realizar (P. ej.: limpiador, monitor, recepcionista, etc.).
+- **Sueldo:** Sueldo mensual a abonar.
+
++ Request (application/json)
+
+        {
+            "nombre": "Tania",
+            "apellidos": "Iglesias Díaz",
+            "nss": "97586031246",
+            "direccion": "Calle Honduras Nº15",
+            "ciudad": "A Coruña",
+            "codigo postal": 15008,
+            "telefono": 676896124,
+            "email": "tania.iglesiasd@gmail.com",
+            "tipo": "Monitor",
+            "sueldo": "1250 euros"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+    
+            Location: /worker/1
+            
+    + Body
+    
+            {
+                "id": 1,
+                "nombre": "Tania",
+                "apellidos": "Iglesias Díaz",
+                "nss": "97586031246",
+                "direccion": "Calle Honduras Nº15",
+                "ciudad": "A Coruña",
+                "codigo postal": 15008,
+                "telefono": 676896124,
+                "email": "tania.iglesiasd@gmail.com",
+                "tipo": "Monitor",
+                "sueldo": "1250 euros"
+            }
+
++ Response 500 (application/json)
+
+        {
+            "message": "Internal server error"
+        }
