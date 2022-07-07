@@ -344,7 +344,44 @@ horas por dia.
 
 + Request (application/json)
 
-+ Response 200 (application/json)
+        {
+            "nombre": "aerobic",
+            "horario":
+                [
+                    {
+                        "dia": "martes",
+                        "hora": ["9:00","20:00"]
+                    },
+                    {
+                        "dia": "jueves",
+                        "hora": ["9:00","20:00"]
+                    }
+                ]
+        }
+
++ Response 201 (application/json)
+
+        {
+            "id": 4,
+            "nombre": "aerobic",
+            "horario":
+                [
+                    {
+                        "dia": "martes",
+                        "hora": ["9:00","20:00"]
+                    },
+                    {
+                        "dia": "jueves",
+                        "hora": ["9:00","20:00"]
+                    }
+                ]
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "message": "Internal server error"
+        }
 
 # Workers Resource [/worker]
 Gestiona los trabajadores del gimnasio.
@@ -400,21 +437,21 @@ Se debe proporcionar:
 - **Dirección:** Se divide en tres campos: calle, ciudad y código postal.
 - **Contacto:** Número de teléfono y email.
 - **Tipo:** Tipo de trabajo a realizar (P. ej.: limpiador, monitor, recepcionista, etc.).
-- **Sueldo:** Sueldo mensual a abonar.
+- **Sueldo:** Sueldo mensual a recibir.
 
 + Request (application/json)
 
         {
-            "nombre": "Tania",
-            "apellidos": "Iglesias Díaz",
-            "nss": "97586031246",
-            "direccion": "Calle Honduras Nº15",
+            "nombre": "Juan",
+            "apellidos": "Fraga Espinosa",
+            "nss": "03526172489",
+            "direccion": "Calle Chile Nº114",
             "ciudad": "A Coruña",
-            "codigo postal": 15008,
-            "telefono": 676896124,
-            "email": "tania.iglesiasd@gmail.com",
-            "tipo": "Monitor",
-            "sueldo": "1250 euros"
+            "codigo postal": 15009,
+            "telefono": 655342218,
+            "email": "juan.fespinosa@gmail.com",
+            "tipo": "Recepcionista",
+            "sueldo": "1150 euros"
         }
 
 + Response 201 (application/json)
@@ -424,19 +461,19 @@ Se debe proporcionar:
             Location: /worker/1
             
     + Body
-    
+        
             {
-                "id": 1,
-                "nombre": "Tania",
-                "apellidos": "Iglesias Díaz",
-                "nss": "97586031246",
-                "direccion": "Calle Honduras Nº15",
+                "id": 2,
+                "nombre": "Juan",
+                "apellidos": "Fraga Espinosa",
+                "nss": "03526172489",
+                "direccion": "Calle Chile Nº114",
                 "ciudad": "A Coruña",
-                "codigo postal": 15008,
-                "telefono": 676896124,
-                "email": "tania.iglesiasd@gmail.com",
-                "tipo": "Monitor",
-                "sueldo": "1250 euros"
+                "codigo postal": 15009,
+                "telefono": 655342218,
+                "email": "juan.fespinosa@gmail.com",
+                "tipo": "Recepcionista",
+                "sueldo": "1150 euros"
             }
 
 + Response 500 (application/json)
