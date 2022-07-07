@@ -1,4 +1,4 @@
-FORMAT: 1A
++++FORMAT: 1A
 HOST: https://polls.apiblueprint.org/
 
 # GymAry V1
@@ -476,6 +476,81 @@ Se debe proporcionar:
                 "sueldo": "1150 euros"
             }
 
++ Response 500 (application/json)
+
+        {
+            "message": "Internal server error"
+        }
+        
+# Material Resource [/material]
+
+## Record new material purchase [POST]
+
+Registra una compra de material. Se pueden comprar varios productos en una misma compra.
+Se debe proporcionar la siguiente información sobre cada producto comprado:
+
+- **Nombre** del producto.
+- **Cantidad** solicitada de material.
+- **Precio** por unidad en euros.
+
+Sobre la compra total se proporciona la siguiente información:
+- **Precio total** de la compra en euros.
+
++ Request (application/json)
+
+        {
+            "material":
+                [
+                    {
+                        "nombre": "elasticos",
+                        "cantidad": 5,
+                        "precio unidad": 12
+                    },
+                    {
+                        "nombre": "disco 5Kg",
+                        "cantidad": 10,
+                        "precio unidad": 15
+                    },
+                    {
+                        "nombre": "banco reclinable",
+                        "cantidad": 2,
+                        "precio unidad": 45
+                    }
+                ],
+            "precio total": 300
+        }
+        
++ Response 201 (application/json)
+
+    + Headers
+    
+            Location: /material/1
+            
+    + Body
+    
+            {
+                "id": 1,
+                "material":
+                    [
+                        {
+                            "nombre": "elasticos",
+                            "cantidad": 5,
+                            "precio unidad": 12
+                        },
+                        {
+                            "nombre": "disco 5Kg",
+                            "cantidad": 10,
+                            "precio unidad": 15
+                        },
+                        {
+                            "nombre": "banco reclinable",
+                            "cantidad": 2,
+                            "precio unidad": 45
+                        }
+                    ],
+                "precio total": 300
+            }
+        
 + Response 500 (application/json)
 
         {
